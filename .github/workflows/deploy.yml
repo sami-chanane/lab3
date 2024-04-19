@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     env:
-      MONGODB_CLUSTER_ADDRESS: ${{env.DB_ADDRESS}}       # from environment
-      PORT: ${{env.DB_PORT}}                             # from environment
+      MONGODB_CLUSTER_ADDRESS: ${{vars.DB_ADDRESS}}       # from environment
+      PORT: ${{vars.DB_PORT}}                             # from environment
       MONGODB_PASSWORD: ${{secrets.DB_PASSWORD}}         # from environment
     steps:
     - name: get code
