@@ -5,16 +5,17 @@ on:
     branches:
     - master
 env:
-  MONGODB_CLUSTER_ADDRESS: cluster0.bysk2f.mongodb.net
-  MONGODB_USERNAME: sami
-  MONGODB_PASSWORD: n84IwLbV2SW9q35N
-  MONGODB_DB_NAME: cluster0
-  PORT: 27017
+  MONGODB_CLUSTER_ADDRESS: will-be-overridden            # overridden
+  MONGODB_USERNAME: ${{secrets.DB_USER}}                 # from regular secret
+  MONGODB_DB_NAME: cluster0                              # from here
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: development
     env:
-      MONGODB_CLUSTER_ADDRESS: cluster0.bysk2fi.mongodb.net
+      MONGODB_CLUSTER_ADDRESS: ${{env.DB_ADDRESS}}       # from environment
+      PORT: ${{env.DB_PORT}}                             # from environment
+      MONGODB_PASSWORD: ${{secrets.DB_PASSWORD}}         # from environment
     steps:
     - name: get code
       uses: actions/checkout@v4
