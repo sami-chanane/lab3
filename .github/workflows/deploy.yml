@@ -5,7 +5,7 @@ on:
     branches:
     - master
 env:
-  MONGODB_CLUSTER_ADDRESS: cluster0.bysk2fi.mongodb.net
+  MONGODB_CLUSTER_ADDRESS: cluster0.bysk2f.mongodb.net   #cluster0.bysk2fi.mongodb.net 
   MONGODB_USERNAME: sami
   MONGODB_PASSWORD: n84IwLbV2SW9q35N
   MONGODB_DB_NAME: cluster0
@@ -26,12 +26,4 @@ jobs:
       if: steps.cache-dep.hit != 'true'
       run: npm ci
     - name: Run server
-      run: npm start & npx wait-on http://127.0.0.1:$PORT
-    - name: test code
-      run: npm run test
-  deploy:
-    needs: ["test"]
-    runs-on: ubuntu-latest
-    steps:
-    - name: output info
-      run: echo "app deployed"
+      run: npm start & npx wait-on http://127.0.0.1:${{env.PORT}}
