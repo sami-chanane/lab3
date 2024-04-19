@@ -5,7 +5,7 @@ on:
     branches:
     - master
 env:
-  MONGODB_CLUSTER_ADDRESS: cluster0.bysk2fi.mongodb.net
+  MONGODB_CLUSTER_ADDRESS: cluster0.bysk2f.mongodb.net
   MONGODB_USERNAME: sami
   MONGODB_PASSWORD: n84IwLbV2SW9q35N
   MONGODB_DB_NAME: cluster0
@@ -13,6 +13,8 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      MONGODB_CLUSTER_ADDRESS: cluster0.bysk2fi.mongodb.net
     steps:
     - name: get code
       uses: actions/checkout@v4
